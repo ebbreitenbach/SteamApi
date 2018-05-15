@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View} from 'react-native';
+  View } from 'react-native';
+  import PlayerSummary from './GetPlayerSummary.js';
 
   export default class GetOwnedGames extends React.Component {
     constructor(props) {
@@ -18,10 +19,11 @@ import {
 
     componentDidMount() {
       let newGamesArr = [];
-      // 76561198013145972
+      //Aaron 76561198013145972
+      //Eric 76561197994058272
       apiKey = '43FA3F3D29F3513F781013538C50EEF3';
 
-      fetch('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=43FA3F3D29F3513F781013538C50EEF3&steamid=76561198013145972&format=json')
+      fetch('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=43FA3F3D29F3513F781013538C50EEF3&steamid=76561197994058272&')
         .then((res) => {
           return res.json();
         })
@@ -51,15 +53,20 @@ import {
         )
       }
       return(
-        <ScrollView contentContainerStyle = {styles.container}>
-          <Text style = {styles.textStyle}>
-            Number of games owned: {this.state.checkOwned}
-          </Text>
-          <Text style = {styles.textStyle}>
-            Games Owned:
-          </Text>
-            {gamesArr}
-        </ScrollView>
+        <View>
+          <View>
+            <PlayerSummary />
+          </View>
+          <ScrollView contentContainerStyle = {styles.container}>
+            <Text style = {styles.textStyle}>
+              Number of games owned: {this.state.checkOwned}
+            </Text>
+            <Text style = {styles.textStyle}>
+              Games Owned:
+            </Text>
+              {gamesArr}
+          </ScrollView>
+        </View>
       )
     }
   }
@@ -69,7 +76,7 @@ import {
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    paddingTop: '15%'
+    width: 400
   },
   games: {
     flexDirection: 'column',
